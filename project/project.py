@@ -4,12 +4,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import argparse
 
-from load_data import get_matrix_data
+import load_data
 
 parser = argparse.ArgumentParser(description="Process some integers.")
-parser.add_argument("--input", type=str, help="Input file")
-
-
+parser.add_argument("--input", type=str, default=load_data.DATA_FILE, help="Input file")
 
 
 def describe_data(data):
@@ -17,17 +15,11 @@ def describe_data(data):
     return
 
 def data_report(data, report_path="report/autoreport.pdf"):
-    from report_path = "report/autoreport.txt"
+
+    return report_path
 
 def main(args):
-    data = get_matrix_data(args.input)
-    
-
-
-
-
-
-
+    data = load_data.get_matrix_data(args.input)
 
 
 
