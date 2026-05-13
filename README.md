@@ -4,17 +4,15 @@
 
 Blibliblabla
 
-## How to get 
+## How to get
 
-## Clone repo
+### Clone repo
 
-- Clone via `git clone TODO website`
+- Clone via `git clone https://github.com/patinoboh/bioinformatika.git`
 - Enter inside `cd bioinformatika` 
 
 ### Venv
 
-- Activate venv via `python3 -m venv VENV_NAME`
-- Download dependencies via `pip install -f requirements`
-
-
-# bioinformatika
+- Create venv via `python3 -m venv VENV_NAME`
+- Active venv via `source VENV_NAME/bin/activate`
+- Download dependencies via `pip install -r requirements`
