@@ -24,16 +24,16 @@ format:
 
 execute:
   echo: false
+
 ---
 
 ## Analýza placenty fajčiarok a nefajčiarok
 
-
-## Výskumné otázky
+### Výskumné otázky
 
 ::: {.callout-note}
 
-### Hlavné otázky projektu
+#### Hlavné otázky projektu
 
 - Dá sa z placenty určiť či matka fajčila?
 - Ktoré gény sú najviac ovplyvnené?
@@ -57,7 +57,13 @@ execute:
 
 - **37 nefajčiarok**
 
-- **714 666 premenných**
+- **714 666 klasifikačných rysov**
+
+### Metadáta
+
+- Vek
+- Pohlavie dieťaťa
+- Doba tehotenstva
 
 :::
 
@@ -71,9 +77,9 @@ execute:
 
 ### Typ dát
 
-- DNA methylation data
-- Placenta samples
-- High-dimensional biological dataset
+- DNA methylácia
+- Vzorky placenty
+- Vysokodimenzionálne dáta
 
 :::
 
@@ -88,7 +94,7 @@ execute:
 ```{mermaid}
 flowchart LR
     A[714666 features]
-    --> B[Variance threshold]
+    --> B[Variance cutoff]
     --> C[20000 features]
     --> D[Feature selection]
     --> E[100 features]
@@ -98,9 +104,9 @@ flowchart LR
 
 ### Použité metódy
 
-- Variance Threshold
-- Sequential Feature Selection
+- Variance cutoff
 - KBest Feature Selector
+- Sequential Feature Selection
 - Logistic Regression
 
 ---
@@ -111,7 +117,6 @@ flowchart LR
 
 ### Pozorovanie
 
-- Najlepšie oddelenie skupín
 - Viditeľný efekt fajčenia
 - Potenciálna klasifikovateľnosť
 
@@ -123,8 +128,8 @@ flowchart LR
 
 ### Pozorovanie
 
-- Pohlavie menej výrazne separované
-- Slabší clustering než smoking status
+- Pohlavie nie sú separovateľné
+- Pohlavie nesúvisí s metylačným profilom placenty
 
 ---
 
@@ -135,7 +140,7 @@ flowchart LR
 ### Pozorovanie
 
 - Vek nevytvára výrazné zhluky
-- Menší efekt na metylačný profil
+- Malý efekt na metylačný profil
 
 
 ## Logistická regresia
@@ -146,15 +151,19 @@ flowchart LR
 
 ![](images/cm_logistic.png)
 
-:::
-
-::: {.column width="45%"}
-
 ### Pozorovania
 
 - Veľmi stabilný model
 - Dobrá interpretovateľnosť
 - Silný baseline classifier
+
+:::
+
+::: {.column width="45%"}
+
+![](images/logistic_pca.png)
+
+
 
 :::
 
@@ -216,9 +225,9 @@ flowchart LR
 
 ::: {.column width="50%"}
 
-![](images/forests_roc.png)
+![](images/forestyCM.png)
 
-#### ROC Curve
+#### Confusion Matrix
 
 :::
 
@@ -248,18 +257,18 @@ flowchart LR
 
 ::: {.column width="45%"}
 
-### Top features
+### Sequential feature selection top features
 
 - cg12268888
 - cg04474990
 - cg08913726
 - cg06369090
-- cg04004205
+- **cg04004205**
 - cg13141983
-- cg01096688
+- **cg01096688**
 - cg11739758
 - **cg27402634**
-- cg24714864
+- **cg24714864**
 
 :::
 
@@ -267,15 +276,24 @@ flowchart LR
 
 ---
 
-## Interpretácia feature importance
+## Rozdelenie killer features
 
-::: {.callout-important}
+::: columns
 
-### Dôležité zistenie
+::: {.row width="50%"}
 
-Niektoré gény výrazne korelujú s fajčením matky a môžu predstavovať biologické markery environmentálneho vplyvu.
+![](images/boxplot.png)
 
 :::
+
+::: {.row width="50%"}
+
+![](images/boxplot2.png)
+
+:::
+
+:::
+
 
 ---
 
@@ -318,13 +336,17 @@ Niektoré gény výrazne korelujú s fajčením matky a môžu predstavovať bio
 
 ### Hlavné výsledky
 
-- Dáta umožňujú spoľahlivú klasifikáciu
+- Dáta umožňujú klasifikáciu
 - Random Forests dosiahli najlepšie výsledky
 - Identifikovali sme významné gény
-- Unsupervised learning približne rekonštruoval kontrolné skupiny
+- Unsupervised learning možno približne rekonštruoval kontrolné skupiny
+- Fajčenie má obojsmerný vplyv na metylačný profil placenty
 
 :::
 
 ---
 
 ## Ďakujeme za pozornosť
+
+- Patrik Broček
+- Rastislav Nowak
