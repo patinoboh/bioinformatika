@@ -1,0 +1,52 @@
+.reveal {
+    font-size: 32px;
+}
+
+.reveal h1 {
+    font-size: 2.2em;
+    color: #1f4e79;
+    margin-bottom: 0.5em;
+}
+
+.reveal h2 {
+    color: #2e75b6;
+    border-bottom: 2px solid #d0d0d0;
+    padding-bottom: 0.2em;
+}
+
+.reveal section img {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    max-height: 550px;
+    object-fit: contain;
+}
+
+.reveal code {
+    background: #f3f3f3;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
+.reveal pre code {
+    max-height: 500px;
+    border-radius: 12px;
+}
+
+.reveal ul {
+    margin-top: 0.5em;
+}
+
+.reveal li {
+    margin-bottom: 0.4em;
+}
+
+.reveal .slide-number {
+    font-size: 0.6em;
+    color: gray;
+}
+
+.reveal strong {
+    color: #c0392b;
+}

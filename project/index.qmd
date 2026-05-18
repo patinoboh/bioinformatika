@@ -1,0 +1,216 @@
+---
+title: "Analýza placenty fajčiarok a nefajčiarok"
+author:
+  - Patrik Broček
+  - Rastislav Nowak
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    toc: false
+    transition: fade
+    incremental: true
+    smaller: false
+    css: styles.css
+    code-copy: true
+    center: false
+---
+
+# Analýza placenty fajčiarok a nefajčiarok
+
+## Ciele projektu
+
+- Zistiť či je možné z placenty určiť:
+  - či bola matka fajčiarka
+  - ktoré gény sú najviac ovplyvnené fajčením
+- Preskúmať možnosti učenia bez učiteľa
+- Rekonštruovať chýbajúce kontrolné skupiny
+
+---
+
+# Dáta
+
+## Dataset
+
+- 72 fajčiarok
+  - 35 placebo vitamin C
+  - 37 vitamin C
+- 37 nefajčiarok
+- 714 666 záznamov
+
+::: notes
+TODO doplniť detailnejší popis datasetu
+:::
+
+[Dataset link](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE169598)
+
+---
+
+# Skúmané otázky
+
+## Hlavné otázky
+
+- Dá sa z placenty určiť fajčenie matky?
+- Ktoré gény sú najviac ovplyvnené?
+- Dá sa pomocou clusteringu doplniť chýbajúce rozdelenie?
+
+---
+
+# Feature Selection
+
+## Redukcia dimenzie
+
+1. Low variance filtering
+
+```text
+714666 → 20000 features
+```
+
+2. Výber featureov
+
+- Sequential Feature Selection
+- KBest selector
+
+```text
+20000 → 100 features
+```
+
+---
+
+# PCA Analýza
+
+## Fajčiari vs nefajčiari
+
+![](images/pca_smokers.png)
+
+---
+
+# PCA Analýza
+
+## Pohlavie
+
+![](images/pca_sex.png)
+
+---
+
+# PCA Analýza
+
+## Vek
+
+![](images/pca_age.png)
+
+---
+
+# Klasifikátory
+
+## Logistická regresia
+
+![](images/cm_logistic.png)
+
+---
+
+# Klasifikátory
+
+## KNN
+
+![](images/cm_knn.png)
+
+![](images/knn_pca.png)
+
+---
+
+# Klasifikátory
+
+## SVM
+
+![](images/cm_svm.png)
+
+![](images/svm_pca.png)
+
+---
+
+# Klasifikátory
+
+## Random Forests
+
+![](images/forests_roc.png)
+
+![](images/forests_pca.png)
+
+---
+
+# Killer Features
+
+## Najdôležitejšie gény
+
+Použili sme opačný prístup:
+hľadali sme featurey najdôležitejšie pri klasifikácii fajčiarok.
+
+---
+
+# Killer Features
+
+## Random Forest Importance
+
+![](images/top_features.png)
+
+---
+
+# Killer Features
+
+## Sequential Feature Selection
+
+```python
+[
+ 'cg12268888',
+ 'cg04474990',
+ 'cg08913726',
+ 'cg06369090',
+ 'cg04004205',
+ 'cg13141983',
+ 'cg01096688',
+ 'cg11739758',
+ 'cg27402634',
+ 'cg24714864'
+]
+```
+
+---
+
+# Explainability
+
+## Interpretácia modelov
+
+TODO:
+- SHAP
+- feature importance
+- biologická interpretácia
+
+---
+
+# Unsupervised Learning
+
+## KMeans Clustering
+
+- Algoritmus našiel:
+  - 36 vzoriek
+  - 36 vzoriek
+
+- Originálne skupiny:
+  - 35
+  - 37
+
+![](images/kmeans_pca.png)
+
+---
+
+# Záver
+
+## Zhrnutie
+
+- Dáta obsahujú silný signál fajčenia
+- Viaceré klasifikátory fungovali dobre
+- Identifikovali sme potenciálne dôležité gény
+- Clustering približne rekonštruoval kontrolné skupiny
+
+# Ďakujeme za pozornosť
