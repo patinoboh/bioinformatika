@@ -1,0 +1,84 @@
+<h1 id="analýza-placenty-fajčiarok-a-nefajčiarok">Analýza placenty fajčiarok a nefajčiarok</h1>
+<p><strong>Autors:</strong> Patrik Broček, Rastislav Nowak</p>
+<h2 id="dáta">Dáta</h2>
+<ul>
+<li><em>72</em> fajčiarok
+<ul>
+<li><em>35</em> placebo vitamin C</li>
+<li><em>37</em> vitamin C</li>
+<li>tieto dáta boli nedostupné</li>
+</ul></li>
+<li><em>37</em> nefajčiarok</li>
+<li><em>714666</em> záznamov TODO Maťka</li>
+<li>TODO Maťka - povedať o datasete</li>
+<li><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE169598">Link na dataset</a></li>
+</ul>
+<h2 id="skúmané-otázky">Skúmané otázky</h2>
+<ul>
+<li>Dá sa z dát placenty zistiť či bola jej matka fajčiarka?</li>
+<li>Dajú sa nájsť hlavné TODO Maťka (gény alebo čo), ktoré sú najviac ovplyvnené fajčením?</li>
+<li>Dá sa učením bez učiteľa doplniť nedostupné dáta o kontrolných skupinách?</li>
+</ul>
+<h2 id="feature-selection">Feature selection</h2>
+<ol type="1">
+<li>Stĺpce s najmenším rozptylom : <em>714666</em> -&gt; <em>20000</em></li>
+<li><ul>
+<li>Sequential feature selection s logistickou regresiou</li>
+<li>KBest feature selector TODO čo robil? : <em>20000</em> -&gt; <em>100</em></li>
+</ul></li>
+</ol>
+<h2 id="ukážka-dát">Ukážka dát</h2>
+<h3 id="todo-ukazat-hodnoty-tych-100-variabli">TODO ukazat hodnoty tych 100 variabli</h3>
+<ul>
+<li>Nejak ukazat distribucie tych variabli</li>
+</ul>
+<h3 id="pca">PCA</h3>
+<ul>
+<li><img src="images/pca_smokers.png" title="fig:" alt="PCA fajčiari vs nefajčiari" /></li>
+<li><img src="images/pca_sex.png" title="fig:" alt="PCA sex" /></li>
+<li><img src="images/pca_age.png" title="fig:" alt="PCA sex" /></li>
+</ul>
+<h2 id="klasifikátory">Klasifikátory</h2>
+<h3 id="logistická-regresia"><strong>Logistická regresia</strong></h3>
+<ul>
+<li><img src="images/cm_logistic.png" title="fig:" alt="confusion matrix logisticka regresia" /></li>
+</ul>
+<h3 id="knn"><strong>KNN</strong></h3>
+<ul>
+<li><img src="images/cm_knn.png" title="fig:" alt="confusion matrix knn" /></li>
+<li><img src="images/knn_pca.png" title="fig:" alt="knn pca" /></li>
+</ul>
+<h3 id="svm"><strong>SVM</strong></h3>
+<ul>
+<li><img src="images/cm_svm.png" title="fig:" alt="confusion matrix svm" /></li>
+<li><img src="images/svm_pca.png" title="fig:" alt="svm pca" /></li>
+</ul>
+<h3 id="random-forests"><strong>Random forests</strong></h3>
+<ul>
+<li><img src="images/forests_roc.png" title="fig:" alt="foresty roc" /></li>
+<li><img src="images/forests_pca.png" title="fig:" alt="foresty pca" /></li>
+</ul>
+<h2 id="killer-features"><strong>Killer features</strong></h2>
+<p>Pre získanie TODO génov ktoré sú najviac ovplyvnené fajčením sme použili opačný postup a hľadali sme TODO gény ktoré sú najsmerodatenejšie pri predikcií či bola matka fajčiarka alebo nie.</p>
+<ul>
+<li>Random forests extraction
+<ul>
+<li><img src="images/top_features.png" title="fig:" alt="naj features" /></li>
+</ul></li>
+<li>Sequential feature selector
+<ul>
+<li><em>[‘cg12268888’, ‘cg04474990’, ‘cg08913726’, ‘cg06369090’, ‘cg04004205’,‘cg13141983’, ‘cg01096688’, ‘cg11739758’, ‘<strong>cg27402634</strong>’, ‘cg24714864’]</em></li>
+</ul></li>
+</ul>
+<h3 id="todo-explanation">TODO explanation</h3>
+<p>Nejaky explanator existuje sem to nejak priprdnut</p>
+<h2 id="unsupervised-learning">Unsupervised learning</h2>
+<p>Nedostupné dáta o rozdelení fajčiarok medzi tie ktoré užívali alebo neužívali vitamín C sme skúsili nájsť pomocou učenia bez učiteľa.</p>
+<ul>
+<li>KMeans
+<ul>
+<li>Algoritmus našiel rozdelenie do dvoch skupín o veľkosti <em>36</em> a <em>36</em></li>
+<li>Originálne kontrolné skupiny mali veľkosti <em>35</em> a <em>37</em></li>
+<li><img src="images/kmeans_pca.png" title="fig:" alt="kmeans" /></li>
+</ul></li>
+</ul>
