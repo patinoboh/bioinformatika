@@ -15,4 +15,4 @@ Blibliblabla
 
 - Create venv via `python3 -m venv VENV_NAME`
 - Active venv via `source VENV_NAME/bin/activate`
-- Download dependencies via `pip install -r requirements`
+- Download dependencies via `pip install -r requirements.txt`
