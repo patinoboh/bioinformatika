@@ -70,6 +70,11 @@ Pre získanie TODO génov ktoré sú najviac ovplyvnené fajčením sme použili
 - Sequential feature selector
     - _['cg12268888', 'cg04474990', 'cg08913726', 'cg06369090', 'cg04004205','cg13141983', 'cg01096688', 'cg11739758', '__cg27402634__', 'cg24714864']_
 
+### TODO explanation
+
+Nejaky explanator existuje sem to nejak priprdnut
+
+
 ## Unsupervised learning
 
 Nedostupné dáta o rozdelení fajčiarok medzi tie ktoré užívali alebo neužívali vitamín C sme skúsili nájsť pomocou učenia bez učiteľa.
