@@ -1,0 +1,330 @@
+---
+title: "Analýza placenty fajčiarok a nefajčiarok"
+subtitle: "Machine Learning analýza metylačných dát"
+author:
+  - Patrik Broček
+  - Rastislav Nowak
+
+format:
+  revealjs:
+    theme: white
+    css: styles.css
+    slide-number: true
+    incremental: false
+    transition: fade
+    background-transition: fade
+    navigation-mode: linear
+    controls-layout: edges
+    center: true
+    width: 1600
+    height: 900
+    auto-animate: true
+    preview-links: auto
+    pdf-separate-fragments: false
+
+execute:
+  echo: false
+---
+
+## Analýza placenty fajčiarok a nefajčiarok
+
+
+## Výskumné otázky
+
+::: {.callout-note}
+
+### Hlavné otázky projektu
+
+- Dá sa z placenty určiť či matka fajčila?
+- Ktoré gény sú najviac ovplyvnené?
+- Dá sa rekonštruovať rozdelenie kontrolných skupín?
+
+:::
+
+---
+
+## Dataset
+
+::: columns
+
+::: {.column width="50%"}
+
+### Dáta
+
+- **72 fajčiarok**
+  - 35 placebo vitamín C
+  - 37 vitamín C
+
+- **37 nefajčiarok**
+
+- **714 666 premenných**
+
+:::
+
+::: {.column width="50%"}
+
+### Zdroj
+
+[Link na dataset](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE169598)
+
+<br>
+
+### Typ dát
+
+- DNA methylation data
+- Placenta samples
+- High-dimensional biological dataset
+
+:::
+
+:::
+
+---
+
+## Feature Selection
+
+### Redukcia dimenzionality
+
+```{mermaid}
+flowchart LR
+    A[714666 features]
+    --> B[Variance threshold]
+    --> C[20000 features]
+    --> D[Feature selection]
+    --> E[100 features]
+```
+
+<br>
+
+### Použité metódy
+
+- Variance Threshold
+- Sequential Feature Selection
+- KBest Feature Selector
+- Logistic Regression
+
+---
+
+## PCA analýza — Fajčiari vs nefajčiari
+
+![](images/pca_smokers.png)
+
+### Pozorovanie
+
+- Najlepšie oddelenie skupín
+- Viditeľný efekt fajčenia
+- Potenciálna klasifikovateľnosť
+
+---
+
+## PCA analýza — Pohlavie
+
+![](images/pca_sex.png)
+
+### Pozorovanie
+
+- Pohlavie menej výrazne separované
+- Slabší clustering než smoking status
+
+---
+
+## PCA analýza — Vek
+
+![](images/pca_age.png)
+
+### Pozorovanie
+
+- Vek nevytvára výrazné zhluky
+- Menší efekt na metylačný profil
+
+
+## Logistická regresia
+
+::: columns
+
+::: {.column width="55%"}
+
+![](images/cm_logistic.png)
+
+:::
+
+::: {.column width="45%"}
+
+### Pozorovania
+
+- Veľmi stabilný model
+- Dobrá interpretovateľnosť
+- Silný baseline classifier
+
+:::
+
+:::
+
+---
+
+## KNN klasifikátor
+
+::: columns
+
+::: {.column width="50%"}
+
+![](images/cm_knn.png)
+
+#### Confusion Matrix
+
+:::
+
+::: {.column width="50%"}
+
+![](images/knn_pca.png)
+
+#### PCA projekcia
+
+:::
+
+:::
+
+---
+
+## SVM klasifikátor
+
+::: columns
+
+::: {.column width="50%"}
+
+![](images/cm_svm.png)
+
+#### Confusion Matrix
+
+:::
+
+::: {.column width="50%"}
+
+![](images/svm_pca.png)
+
+#### PCA projekcia
+
+:::
+
+:::
+
+---
+
+## Random Forests
+
+::: columns
+
+::: {.column width="50%"}
+
+![](images/forests_roc.png)
+
+#### ROC Curve
+
+:::
+
+::: {.column width="50%"}
+
+![](images/forests_pca.png)
+
+#### PCA projekcia
+
+:::
+
+:::
+
+---
+
+## Killer Features
+
+### Najdôležitejšie gény
+
+::: columns
+
+::: {.column width="55%"}
+
+![](images/top_features.png)
+
+:::
+
+::: {.column width="45%"}
+
+### Top features
+
+- cg12268888
+- cg04474990
+- cg08913726
+- cg06369090
+- cg04004205
+- cg13141983
+- cg01096688
+- cg11739758
+- **cg27402634**
+- cg24714864
+
+:::
+
+:::
+
+---
+
+## Interpretácia feature importance
+
+::: {.callout-important}
+
+### Dôležité zistenie
+
+Niektoré gény výrazne korelujú s fajčením matky a môžu predstavovať biologické markery environmentálneho vplyvu.
+
+:::
+
+---
+
+## Unsupervised Learning
+
+### KMeans clustering
+
+::: columns
+
+::: {.column width="50%"}
+
+![](images/kmeans_pca.png)
+
+:::
+
+::: {.column width="50%"}
+
+### Výsledky
+
+- Model našiel:
+  - 36 vzoriek
+  - 36 vzoriek
+
+<br>
+
+### Originálne skupiny
+
+- 35 placebo
+- 37 vitamín C
+
+:::
+
+:::
+
+---
+
+## Záver
+
+::: {.callout-tip}
+
+### Hlavné výsledky
+
+- Dáta umožňujú spoľahlivú klasifikáciu
+- Random Forests dosiahli najlepšie výsledky
+- Identifikovali sme významné gény
+- Unsupervised learning približne rekonštruoval kontrolné skupiny
+
+:::
+
+---
+
+## Ďakujeme za pozornosť
